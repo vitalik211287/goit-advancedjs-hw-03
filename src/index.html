@@ -9,11 +9,13 @@
   <body>
     <main>
       <form action="" class="form">
-        <input type="text" placeholder="Search images..." />
+        <input type="text" name="query" placeholder="Search images..." required/>
         <button type="submit">Search</button>
       </form>
+      <ul class="gallery js-gallery"></ul>
     </main>
     <script type="module" src="./main.js"></script>
     <script type="module" src="./js/pixabay-api.js"></script>
+    <!-- <script type="module" src="./js/render-functions.js"></script> -->
   </body>
 </html>
