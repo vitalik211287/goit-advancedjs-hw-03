@@ -5,18 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     <script type="module" crossorigin src="/goit-advancedjs-hw-03/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-I1I71QQ2.js">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-DnveWo0P.css">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/index-C2U83Kt4.css">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-5ObWk2rO.js">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-DumFYO8Z.css">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/index-fB38E_Sy.css">
   </head>
   <body>
     <main>
       <form action="" class="form">
-        <input type="text" name="query" placeholder="Search images..." required/>
+        <input
+          type="text"
+          name="query"
+          placeholder="Search images..."
+          required
+        />
         <button type="submit">Search</button>
       </form>
       <ul class="gallery js-gallery"></ul>
+      <!-- <ul class="gallery js-gallery"></ul> -->
+
+      <!-- Глобальний індикатор завантаження -->
+      <div
+        id="loader"
+        class="loader is-hidden"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <div class="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </main>
-    <!-- <script type="module" src="./js/render-functions.js"></script> -->
   </body>
 </html>
