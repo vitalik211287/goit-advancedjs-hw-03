@@ -23,7 +23,7 @@ function onSearchSubmit(e) {
     iziToast.warning({ title: 'Увага', message: 'Введи пошуковий запит' });
     return;
   }
-  
+
   refs.gallery.innerHTML = '';
   showLoader();
 
