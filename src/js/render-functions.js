@@ -1,21 +1,68 @@
-import { fetchImages } from './pixabay-api';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from 'simplelightbox';
 
-const refs = {
-  searchForm: document.querySelector('form'),
-  gallery: document.querySelector('js-gallery'),
-};
+export function createGalleryCardTemplate({
+  downloads,
+  comments,
+  views,
+  likes,
+  tags,
+  webformatURL,
+  largeImageURL,
+}) {
+  return `
+    <li class="gallery-card">
+     <a class="gallery-item" href="${largeImageURL}">
+  <img src="${webformatURL}" alt="${tags}" loading="lazy" class="gallery-image" />
+  </a>
+      <div class="info">
+    <p class="info-item">
+      <b>Likes </b>
+       <span class="span_text">${likes}</span>
+    </p>
+    <p class="info-item">
+      <b>Views </b>
+        <span class="span_text">${views}</span>
+    </p>
+    <p class="info-item">
+      <b>Comments </b>
+       <span class="span_text">${comments}</span>
+    </p>
+    <p class="info-item">
+      <b>Downloads </b>
+       <span class="span_text">${downloads}</span>
+    </p>
+  </div>
+</div>
+    </li>
+  `;
+}
 
-const onSearchSubmit = e => {
-  e.preventDefault();
-  const { target: searchForm } = e;
-  const value = searchForm.elements.query.value.trim();
-  if (value.length === 0) {
-    iziToast.warning({ title: 'Увага', message: 'Введи пошуковий запит' });
+/** Рендерить масив карток у контейнер UL */
+export function renderGallery(containerEl, hits) {
+  if (!hits?.length) {
+    containerEl.innerHTML = `<li class="empty">Нічого не знайдено</li>`;
     return;
   }
-  fetchImages(value);
-};
+  containerEl.innerHTML = hits.map(createGalleryCardTemplate).join('');
 
-refs.searchForm.addEventListener('submit', onSearchSubmit);
+  // ІНІЦІАЛІЗАЦІЯ LIGHTBOX ТУТ ⬇
+  const lightbox = new SimpleLightbox('.js-gallery .gallery-item', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+  lightbox.refresh();
+}
+
+export function showLoader() {
+  const el = document.getElementById('loader');
+  if (el) el.classList.remove('is-hidden');
+}
+
+export function hideLoader() {
+  const el = document.getElementById('loader');
+  if (el) el.classList.add('is-hidden');
+}
+
+
+
