@@ -28,7 +28,6 @@ function onSearchSubmit(e) {
 
   fetchImages(query)
     .then(hits => {
-      // коли дані успішно отримано
       renderGallery(refs.gallery, hits);
     })
     .catch(err => {
@@ -46,5 +45,5 @@ function onSearchSubmit(e) {
         });
       }
     })
-    .finally(() => hideLoader()); // прибираємо спінер у будь-якому випадку
+    .finally(() => hideLoader()); 
 }

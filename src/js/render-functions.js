@@ -38,7 +38,7 @@ export function createGalleryCardTemplate({
   `;
 }
 
-/** Рендерить масив карток у контейнер UL */
+
 export function renderGallery(containerEl, hits) {
   if (!hits?.length) {
     containerEl.innerHTML = `<li class="empty">Нічого не знайдено</li>`;
@@ -46,7 +46,7 @@ export function renderGallery(containerEl, hits) {
   }
   containerEl.innerHTML = hits.map(createGalleryCardTemplate).join('');
 
-  // ІНІЦІАЛІЗАЦІЯ LIGHTBOX ТУТ ⬇
+  
   const lightbox = new SimpleLightbox('.js-gallery .gallery-item', {
     captionsData: 'alt',
     captionDelay: 250,

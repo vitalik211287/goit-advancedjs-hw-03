@@ -17,16 +17,16 @@ export function fetchImages(query) {
       if (!res.ok) {
         const err = new Error(`HTTP ${res.status}`);
         err.status = res.status;
-        throw err; // передаємо помилку далі у .catch
+        throw err; 
       }
-      return res.json(); // повертаємо проміс із JSON
+      return res.json(); 
     })
     .then(data => {
-      return data.hits; // повертаємо тільки масив картинок
+      return data.hits; 
     })
     .catch(err => {
       console.error('❌ Fetch error:', err);
-      throw err; // проброс помилки далі, щоб її побачив onSearchSubmit
+      throw err; 
     });
 }
 
