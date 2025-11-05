@@ -11,39 +11,33 @@ export function createGalleryCardTemplate({
   largeImageURL,
 }) {
   return `
-    <li class="gallery-card">
-     <a class="gallery-item" href="${largeImageURL}">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" class="gallery-image" />
-  </a>
-      <div class="info">
-    <p class="info-item">
-      <b>Likes </b>
-       <span class="span_text">${likes}</span>
-    </p>
-    <p class="info-item">
-      <b>Views </b>
-        <span class="span_text">${views}</span>
-    </p>
-    <p class="info-item">
-      <b>Comments </b>
-       <span class="span_text">${comments}</span>
-    </p>
-    <p class="info-item">
-      <b>Downloads </b>
-       <span class="span_text">${downloads}</span>
-    </p>
-  </div>
-</div>
-    </li>
-  `;
+  <li class="gallery-card">
+    <a class="gallery-item" href="${largeImageURL}">
+      <img src="${webformatURL}" alt="${tags}" loading="lazy" class="gallery-image" />
+    </a>
+    <div class="info">
+      <p class="info-item"><b>Likes</b> <span>${likes}</span></p>
+      <p class="info-item"><b>Views</b> <span>${views}</span></p>
+      <p class="info-item"><b>Comments</b> <span>${comments}</span></p>
+      <p class="info-item"><b>Downloads</b> <span>${downloads}</span></p>
+    </div>
+  </li>
+`;
+
 }
 
 
 export function renderGallery(containerEl, hits) {
-  if (!hits?.length) {
-    containerEl.innerHTML = `<li class="empty">Нічого не знайдено</li>`;
-    return;
-  }
+   if (!hits?.length) {
+     iziToast.info({
+       title: 'Info',
+       message:
+         'Sorry, there are no images matching your search query. Please try again!',
+       position: 'topRight',
+     });
+     containerEl.innerHTML = '';
+     return;
+   }
   containerEl.innerHTML = hits.map(createGalleryCardTemplate).join('');
 
   
